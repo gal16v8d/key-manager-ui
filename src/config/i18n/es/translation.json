@@ -1,0 +1,45 @@
+{
+  "header": {
+    "accounts": "Cuentas",
+    "logout": "Salir",
+    "subtitle": "Administración de cuentas"
+  },
+  "login": {
+    "userField": "Usuario",
+    "passField": "Contraseña",
+    "loginButton": "Ingresar",
+    "registerButton": "Registrarse",
+    "errorLogin": "Usuario o Contraseña incorrectos"
+  },
+  "accountList": {
+    "add": "Agregar",
+    "delete": "Eliminar",
+    "update": "Actualizar",
+    "table": {
+      "id": "Codigo Cuenta",
+      "name": "Nombre Cuenta",
+      "user": "Usuario",
+      "userLogin": "Usuario Cuenta",
+      "url": "Url",
+      "actions": "Acciones"
+    }
+  },
+  "accountModal": {
+    "addMsg": "Cuenta creada: ",
+    "addErrorMsg": "No se pudo crear la cuenta: ",
+    "deletedMsg": "Cuenta eliminada: ",
+    "deletedErrorMsg": "No se pudo eliminar la cuenta: ",
+    "updatedMsg": "Cuenta actualizada: ",
+    "updatedErrorMsg": "No se pudo actualizar la cuenta: ",
+    "saveButton": "Guardar",
+    "cancelButton": "Cancelar",
+    "dialogHeader": "Detalles de la cuenta",
+    "nameInput": "Nombre cuenta",
+    "loginInput": "Usuario",
+    "passInput": "Contraseña",
+    "urlInput": "Url"
+  },
+  "validation": {
+    "required": "Campo requerido"
+  }
+}

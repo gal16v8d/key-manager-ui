@@ -1,0 +1,104 @@
+[
+  {
+    "id": 2,
+    "account": {
+      "accountId": 2,
+      "firstName": "John",
+      "lastName": "Smith",
+      "login": "alex",
+      "password": "giG4LoBKbjUSBCNBxq2DJg==",
+      "role": 2
+    },
+    "accountName": "Adf.ly",
+    "accountType": null,
+    "login": "test-01@gmail.com",
+    "password": "bpupaFiFvQ9V0KSUFpe+Og==",
+    "url": "https://adf.ly/",
+    "modificationDate": "2020-09-06"
+  },
+  {
+    "id": 8,
+    "account": {
+      "accountId": 2,
+      "firstName": "John",
+      "lastName": "Smith",
+      "login": "alex",
+      "password": "giG4LoBKbjUSBCNBxq2DJg==",
+      "role": 2
+    },
+    "accountName": "Buho 21",
+    "accountType": null,
+    "login": "Trollface",
+    "password": "YJH7mZUuhnEXf/qzkTc++Q==",
+    "url": "https://www.buho21.com/",
+    "modificationDate": "2018-05-28"
+  },
+  {
+    "id": 63,
+    "account": {
+      "accountId": 2,
+      "firstName": "John",
+      "lastName": "Smith",
+      "login": "alex",
+      "password": "giG4LoBKbjUSBCNBxq2DJg==",
+      "role": 2
+    },
+    "accountName": "Chess",
+    "accountType": null,
+    "login": "Trollface",
+    "password": "lf3xEqWe/kj2GPIb2Zd8Fw==",
+    "url": "",
+    "modificationDate": "2018-10-02"
+  },
+  {
+    "id": 86,
+    "account": {
+      "accountId": 2,
+      "firstName": "John",
+      "lastName": "Smith",
+      "login": "alex",
+      "password": "giG4LoBKbjUSBCNBxq2DJg==",
+      "role": 2
+    },
+    "accountName": "Crunchyroll",
+    "accountType": null,
+    "login": "test-01@gmail.com",
+    "password": "WkhGLqrDwT2kWk669G9xlQ==",
+    "url": "https://www.crunchyroll.com/es",
+    "modificationDate": "2020-12-03"
+  },
+  {
+    "id": 22412470089421,
+    "account": {
+      "accountId": 2,
+      "firstName": "John",
+      "lastName": "Smith",
+      "login": "alex",
+      "password": "giG4LoBKbjUSBCNBxq2DJg==",
+      "role": 2
+    },
+    "accountName": "Discord",
+    "accountType": null,
+    "login": "test-01@gmail.com",
+    "password": "bak7d///AJiyZoetIEz/Yg==",
+    "url": "",
+    "modificationDate": "2020-12-13"
+  },
+  {
+    "id": 15,
+    "account": {
+      "accountId": 2,
+      "firstName": "John",
+      "lastName": "Smith",
+      "login": "alex",
+      "password": "giG4LoBKbjUSBCNBxq2DJg==",
+      "role": 2
+    },
+    "accountName": "Duolingo",
+    "accountType": null,
+    "login": "Trollface",
+    "password": "azkjqiM9s6fTtQ2ojqm9UQ==",
+    "url": "https://es.duolingo.com/",
+    "modificationDate": "2021-08-02"
+  }
+]

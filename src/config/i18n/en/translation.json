@@ -1,0 +1,45 @@
+{
+  "header": {
+    "accounts": "Accounts",
+    "logout": "Logout",
+    "subtitle": "Account Management"
+  },
+  "login": {
+    "userField": "User",
+    "passField": "Password",
+    "loginButton": "Login",
+    "registerButton": "Register",
+    "errorLogin": "User or password incorrect"
+  },
+  "accountList": {
+    "add": "New",
+    "delete": "Delete",
+    "update": "Update",
+    "table": {
+      "id": "Id",
+      "name": "Account name",
+      "user": "User",
+      "userLogin": "login",
+      "url": "Url",
+      "actions": "Actions"
+    }
+  },
+  "accountModal": {
+    "addMsg": "Account created: ",
+    "addErrorMsg": "Couldn't create the account: ",
+    "deletedMsg": "Account deleted: ",
+    "deletedErrorMsg": "Couldn't delete the account: ",
+    "updatedMsg": "Account updated: ",
+    "updatedErrorMsg": "Couldn't update the account: ",
+    "saveButton": "Save",
+    "cancelButton": "Cancel",
+    "dialogHeader": "Account details",
+    "nameInput": "Account name",
+    "loginInput": "Login",
+    "passInput": "Password",
+    "urlInput": "Url"
+  },
+  "validation": {
+    "required": "Required field"
+  }
+}
