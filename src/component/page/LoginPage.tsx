@@ -12,7 +12,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
-const LoginPage = (): JSX.Element => {
+const LoginPage = (): React.ReactElement => {
   const { t, message: messages } = useKmgrContext();
   const navigate = useNavigate();
   const setLoginData = useSetRecoilState(loginState);

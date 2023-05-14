@@ -14,7 +14,7 @@ const KmgrContext = React.createContext<KmgrContextProps | undefined>(
 
 const KmgrProvider = (
   props: React.PropsWithChildren<Record<string, unknown>>
-): JSX.Element => {
+): React.ReactElement => {
   const { t } = useTranslation();
   const message = React.useRef<Messages>(null);
 

@@ -5,7 +5,7 @@ import PageHeader from './layout/PageHeader';
 import CuentasListController from './page/AccountListPage';
 import LoginController from './page/LoginPage';
 
-const KeyManagerApp = (): JSX.Element => {
+const KeyManagerApp = (): React.ReactElement => {
   return (
     <BrowserRouter>
       <>

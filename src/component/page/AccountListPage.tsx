@@ -15,7 +15,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import AccountModal from './AccountModal';
 
-const AccountListPage = (): JSX.Element => {
+const AccountListPage = (): React.ReactElement => {
   const { t, message: messages } = useKmgrContext();
   const loggedUser = useRecoilValue(loginState);
   const navigate = useNavigate();

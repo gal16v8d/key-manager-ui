@@ -1,4 +1,4 @@
-const PageFooter = (): JSX.Element => {
+const PageFooter = (): React.ReactElement => {
   return (
     <footer>
       <section className="hero is-link">
