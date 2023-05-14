@@ -19,9 +19,7 @@ const App: React.FC = () => {
           <KmgrProvider>
             <KeyManagerApp />
           </KmgrProvider>
-          {process.env.NODE_ENV === 'development' && (
-            <ReactQueryDevtools initialIsOpen={false} />
-          )}
+          {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
         </RecoilRoot>
       </QueryClientProvider>
     </div>

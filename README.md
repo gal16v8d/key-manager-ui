@@ -39,5 +39,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 - [React](https://reactjs.org/)
 - [React-i18next](https://react.i18next.com/)
 - [React-Query](https://tanstack.com/query/v4/docs/react/adapters/react-query)
+- [React-Testing-Lib](https://testing-library.com/docs/react-testing-library/intro/)
 - [Recoil](https://recoiljs.org/)
 - [Vite](https://vitejs.dev/)
