@@ -23,13 +23,19 @@ You will also see any lint errors in the console.
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Stay in touch
+### Docker
 
-- Author - [gal16v8d](https://github.com/gal16v8d)
+To build the docker image, inside project dir:
 
-## License
+```bash
+docker build -t gsdd-key-manager-ui .
+```
 
-[MIT licensed](LICENSE).
+Then run using something like:
+
+```bash
+docker run -p 5174:5174 -e VITE_API_URL=http://api.example.com -e VITE_APP_VERSION=0.0.1 -e VITE_ENABLE_MOCKS=true gsdd-key-manager-ui
+```
 
 ## List of cool technologies in use here
 
@@ -39,6 +45,13 @@ It correctly bundles React in production mode and optimizes the build for the be
 - [React](https://reactjs.org/)
 - [React-i18next](https://react.i18next.com/)
 - [React-Query](https://tanstack.com/query/v4/docs/react/adapters/react-query)
-- [React-Testing-Lib](https://testing-library.com/docs/react-testing-library/intro/)
 - [Recoil](https://recoiljs.org/)
 - [Vite](https://vitejs.dev/)
+
+## License
+
+[MIT licensed](LICENSE).
+
+## Stay in touch
+
+- Author - [gal16v8d](https://github.com/gal16v8d)
