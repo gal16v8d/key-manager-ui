@@ -4,8 +4,9 @@ import PageFooter from './layout/PageFooter';
 import PageHeader from './layout/PageHeader';
 import CuentasListController from './page/AccountListPage';
 import LoginController from './page/LoginPage';
+import type { ReactElement } from 'react';
 
-const KeyManagerApp = (): React.ReactElement => {
+const KeyManagerApp = (): ReactElement => {
   return (
     <BrowserRouter>
       <>

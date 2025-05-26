@@ -5,14 +5,15 @@ import {
 } from '@/api/service/AuthService';
 import { loginState } from '@/api/service/recoil/atoms/loginAtoms';
 import ENV from '@/constants/KeyManagerConstants';
-import { useKmgrContext } from '@/provider/KmgrProvider';
+import { useKmgrContext } from '@/provider/KmgrContext';
 import { Button } from 'primereact/button';
 import { Messages } from 'primereact/messages';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
+import type { ReactElement } from 'react';
 
-const LoginPage = (): React.ReactElement => {
+const LoginPage = (): ReactElement => {
   const { t, message: messages } = useKmgrContext();
   const navigate = useNavigate();
   const setLoginData = useSetRecoilState(loginState);

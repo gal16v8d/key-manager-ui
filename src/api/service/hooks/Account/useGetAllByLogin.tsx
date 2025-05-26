@@ -1,7 +1,8 @@
 import { AccountLogin } from '@/api/model/AccountLogin';
 import { getAllByLogin } from '@/api/service/AccountService';
 import ENV from '@/constants/KeyManagerConstants';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import type { UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 const useGetAllByLogin = (
   userLogin: string,

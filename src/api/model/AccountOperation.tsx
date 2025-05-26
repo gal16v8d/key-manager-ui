@@ -6,4 +6,4 @@ interface AccountOperation {
   deletePressed?: boolean;
 }
 
-export default AccountOperation;
+export type { AccountOperation };

@@ -1,22 +1,14 @@
-import { TFunction } from 'i18next';
 import { Messages } from 'primereact/messages';
-import React from 'react';
+import type { ReactElement, PropsWithChildren } from 'react';
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { KmgrContext } from './KmgrContext';
 
-interface KmgrContextProps {
-  t: TFunction<'translation', undefined>;
-  message: React.RefObject<Messages>;
-}
-
-const KmgrContext = React.createContext<KmgrContextProps | undefined>(
-  undefined
-);
-
-const KmgrProvider = (
-  props: React.PropsWithChildren<Record<string, unknown>>
-): React.ReactElement => {
+export const KmgrProvider = (
+  props: PropsWithChildren<Record<string, unknown>>
+): ReactElement => {
   const { t } = useTranslation();
-  const message = React.useRef<Messages>(null);
+  const message = useRef<Messages>(null);
 
   return (
     <KmgrContext.Provider value={{ t, message }}>
@@ -24,13 +16,3 @@ const KmgrProvider = (
     </KmgrContext.Provider>
   );
 };
-
-const useKmgrContext = (): KmgrContextProps => {
-  const context = React.useContext(KmgrContext);
-  if (context === undefined) {
-    throw new Error('useKmgrContext must be used within KmgrProvider');
-  }
-  return context;
-};
-
-export { KmgrProvider, useKmgrContext };

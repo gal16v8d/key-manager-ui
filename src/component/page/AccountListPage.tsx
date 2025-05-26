@@ -1,21 +1,22 @@
 import { AccountLogin } from '@/api/model/AccountLogin';
-import AccountOperation from '@/api/model/AccountOperation';
+import type { AccountOperation } from '@/api/model/AccountOperation';
 import useGetAllByLogin from '@/api/service/hooks/Account/useGetAllByLogin';
 import { loginState } from '@/api/service/recoil/atoms/loginAtoms';
 import ENV from '@/constants/KeyManagerConstants';
-import { useKmgrContext } from '@/provider/KmgrProvider';
-import { severity } from '@/types/severity';
+import { useKmgrContext } from '@/provider/KmgrContext';
+import type { severity } from '@/types/severity';
 import { Button } from 'primereact/button';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { Messages } from 'primereact/messages';
 import { ProgressSpinner } from 'primereact/progressspinner';
+import type { ReactElement } from 'react';
 import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import AccountModal from './AccountModal';
 
-const AccountListPage = (): React.ReactElement => {
+const AccountListPage = (): ReactElement => {
   const { t, message: messages } = useKmgrContext();
   const loggedUser = useRecoilValue(loginState);
   const navigate = useNavigate();

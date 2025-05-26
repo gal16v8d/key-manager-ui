@@ -1,4 +1,6 @@
-const PageFooter = (): React.ReactElement => {
+import type { ReactElement } from 'react';
+
+const PageFooter = (): ReactElement => {
   return (
     <footer>
       <section className="hero is-link">

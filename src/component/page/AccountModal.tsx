@@ -1,16 +1,17 @@
 import { AccountLogin } from '@/api/model/AccountLogin';
-import AccountOperation from '@/api/model/AccountOperation';
+import type { AccountOperation } from '@/api/model/AccountOperation';
 import {
   useDeleteAccount,
   usePostAccount,
   usePutAccount,
 } from '@/api/service/hooks/Account/useAccountService';
 import useGetByLoginAndAccountId from '@/api/service/hooks/Account/useGetByLoginAndAccountId';
-import { useKmgrContext } from '@/provider/KmgrProvider';
-import { severity } from '@/types/severity';
+import { useKmgrContext } from '@/provider/KmgrContext';
+import type { severity } from '@/types/severity';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
-import React, { useEffect, useState } from 'react';
+import type { FC } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 interface AccountProps {
@@ -20,7 +21,7 @@ interface AccountProps {
   showMessage: (summary: string, type: severity, message: string) => void;
 }
 
-const AccountModal: React.FC<AccountProps> = ({
+const AccountModal: FC<AccountProps> = ({
   accountOperation,
   loggedUser,
   refetch,
