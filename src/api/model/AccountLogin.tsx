@@ -6,7 +6,7 @@ export class AccountLogin extends Login {
   accountName?: string;
   url?: string;
 
-  constructor(res?: any) {
+  constructor(res?: AccountLogin) {
     super(res);
     Object.assign(this, res);
   }

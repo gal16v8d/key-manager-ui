@@ -1,61 +1,42 @@
 import { loginState } from '@/api/service/recoil/atoms/loginAtoms';
 import ENV from '@/constants/KeyManagerConstants';
-import { useKmgrContext } from '@/provider/KmgrProvider';
-import { Link } from 'react-router-dom';
+import { useKmgrContext } from '@/provider/KmgrContext';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
+import { Menubar } from 'primereact/menubar';
+import { useNavigate } from 'react-router-dom';
+import './PageHeader.css';
 
 const PageHeader = () => {
   const { t } = useKmgrContext();
+  const navigate = useNavigate();
   const loggedUser = useRecoilValue(loginState);
   const resetLoginData = useResetRecoilState(loginState);
+
+  const menuItems = [
+    {
+      label: t('header.accounts'),
+      command: () => navigate(ENV.ROUTES.ACCOUNTS),
+    },
+    {
+      label: t('header.logout'),
+      command: () => {
+        resetLoginData();
+        navigate(ENV.ROUTES.INDEX);
+      },
+    },
+  ];
 
   return (
     <header>
       <section className="hero is-link">
         <div className="hero-head">
-          <nav
-            className="navbar"
-            role="navigation"
-            aria-label="main navigation"
-          >
-            <div className="navbar-brand">
-              <a className="navbar-item" href="https://bulma.io">
-                <img
-                  src="https://bulma.io/images/bulma-logo.png"
-                  alt="logo"
-                  width="112"
-                  height="28"
-                />
-              </a>
-            </div>
-
-            {loggedUser && (
-              <div className="navbar-menu">
-                <div className="navbar-start">
-                  <Link className="navbar-item" to={ENV.ROUTES.ACCOUNTS}>
-                    {t('header.accounts')}
-                  </Link>
-                </div>
-                <div className="navbar-end">
-                  <Link
-                    className="navbar-item"
-                    to={ENV.ROUTES.INDEX}
-                    onClick={resetLoginData}
-                  >
-                    {t('header.logout')}
-                  </Link>
-                </div>
-              </div>
-            )}
-          </nav>
+          {loggedUser && <Menubar model={menuItems} />}
         </div>
 
-        <div className="hero-body">
-          <div className="container has-text-centered">
-            <h1 className="title">KeyManager</h1>
-            <h2 className="subtitle">{t('header.subtitle')}</h2>
-          </div>
-        </div>
+        <header className="header">
+          <h1 className="title">{t('app.name')}</h1>
+          <h2 className="subtitle">{t('header.subtitle')}</h2>
+        </header>
       </section>
     </header>
   );

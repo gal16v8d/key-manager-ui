@@ -1,15 +1,15 @@
 import type { ReactElement } from 'react';
+import { useKmgrContext } from '@/provider/KmgrContext';
+import './PageFooter.css';
 
 const PageFooter = (): ReactElement => {
+  const { t } = useKmgrContext();
+
   return (
-    <footer>
-      <section className="hero is-link">
-        <div className="hero-body">
-          <div className="container has-text-centered">
-            &copy; KeyManager, {new Date().getFullYear()}
-          </div>
-        </div>
-      </section>
+    <footer className="footer">
+      <p className="footer__text">
+        &copy; {t('app.name')}, {new Date().getFullYear()}
+      </p>
     </footer>
   );
 };

@@ -1,5 +1,6 @@
 import { AccountLogin } from '@/api/model/AccountLogin';
 import type { AccountOperation } from '@/api/model/AccountOperation';
+import type { ApiError } from '@/api/model/response/ApiError';
 import {
   useDeleteAccount,
   usePostAccount,
@@ -8,16 +9,24 @@ import {
 import useGetByLoginAndAccountId from '@/api/service/hooks/Account/useGetByLoginAndAccountId';
 import { useKmgrContext } from '@/provider/KmgrContext';
 import type { severity } from '@/types/severity';
+import type {
+  QueryObserverResult,
+  RefetchOptions,
+} from '@tanstack/react-query';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
+import { InputText } from 'primereact/inputtext';
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import './AccountModal.css';
 
 interface AccountProps {
   accountOperation: AccountOperation;
   loggedUser: string;
-  refetch: (options?: any) => Promise<any>;
+  refetch: (
+    options?: RefetchOptions
+  ) => Promise<QueryObserverResult<Array<unknown>, ApiError>>;
   showMessage: (summary: string, type: severity, message: string) => void;
 }
 
@@ -28,7 +37,7 @@ const AccountModal: FC<AccountProps> = ({
   showMessage,
 }) => {
   const { t } = useKmgrContext();
-  const initialCuentaState = () => {
+  const initialAccountState = () => {
     const accountLogin: AccountLogin = new AccountLogin();
     accountLogin.accountName = '';
     accountLogin.login = '';
@@ -37,7 +46,7 @@ const AccountModal: FC<AccountProps> = ({
     accountLogin.userLogin = loggedUser;
     return accountLogin;
   };
-  const [account, setAccount] = useState(initialCuentaState);
+  const [account, setAccount] = useState(initialAccountState);
   const [displayDialog, setDisplayDialog] = useState<boolean>(false);
   const [hidePass, setHidePass] = useState<boolean>(true);
   const {
@@ -55,7 +64,7 @@ const AccountModal: FC<AccountProps> = ({
     accountOperation?.accountData?.id,
     {
       enabled: !!loggedUser && !!accountOperation?.accountData?.id,
-      onError: (error: { response: { status: number } }) => {
+      onError: (error: ApiError) => {
         setDisplayDialog(false);
         showMessage(
           `Error retrieving account ${accountOperation?.accountData?.id} - `,
@@ -102,7 +111,7 @@ const AccountModal: FC<AccountProps> = ({
     if (accountOperation?.deletePressed && accountOperation?.accountData) {
       void performDelete(accountOperation?.accountData);
     } else if (accountOperation?.addPressed) {
-      setAccount(initialCuentaState());
+      setAccount(initialAccountState());
       setDisplayDialog(true);
     }
   }, [accountOperation]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -119,7 +128,7 @@ const AccountModal: FC<AccountProps> = ({
     data.userLogin = loggedUser;
     const accountLoginAux: AccountLogin = new AccountLogin(data);
     setAccount(accountLoginAux);
-    await storeCuenta(accountLoginAux);
+    await storeAccount(accountLoginAux);
   };
 
   const onCancel = () => {
@@ -130,7 +139,7 @@ const AccountModal: FC<AccountProps> = ({
     setHidePass(!hidePass);
   };
 
-  const storeCuenta = async (data: AccountLogin) => {
+  const storeAccount = async (data: AccountLogin) => {
     if (accountOperation?.addPressed) {
       await performCreate(data);
     } else {
@@ -181,20 +190,16 @@ const AccountModal: FC<AccountProps> = ({
   };
 
   const dialogOptions = (
-    <div className="field is-grouped">
-      <div className="control">
-        <Button
-          label={t('accountModal.saveButton') ?? 'accountModal.saveButton'}
-        />
-      </div>
-      <div className="control">
-        <Button
-          label={t('accountModal.cancelButton') ?? 'accountModal.cancelButton'}
-          className="p-button-warning"
-          onClick={onCancel}
-          type="button"
-        />
-      </div>
+    <div className="button-container">
+      <Button
+        label={t('accountModal.saveButton') ?? 'accountModal.saveButton'}
+      />
+      <Button
+        label={t('accountModal.cancelButton') ?? 'accountModal.cancelButton'}
+        className="p-button-warning"
+        onClick={onCancel}
+        type="button"
+      />
     </div>
   );
 
@@ -209,82 +214,72 @@ const AccountModal: FC<AccountProps> = ({
         onHide={() => setDisplayDialog(false)}
       >
         {account && (
-          <div className="p-grid p-fluid">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="field">
+          <div className="modal-form-container">
+            <form className="modal-form" onSubmit={handleSubmit(onSubmit)}>
+              <div>
                 <label className="label">{t('accountModal.nameInput')}</label>
-                <div className="control">
-                  <input
-                    {...register('accountName', { required: true })}
-                    className="input"
-                    type="text"
-                    name="accountName"
-                    placeholder={
-                      t('accountModal.nameInput') ?? 'accountModal.nameInput'
-                    }
-                    defaultValue={account.accountName}
-                  />
-                  {errors.accountName && <p>{t('validation.required')}</p>}
-                </div>
+                <InputText
+                  {...register('accountName', { required: true })}
+                  className="input"
+                  type="text"
+                  name="accountName"
+                  placeholder={
+                    t('accountModal.nameInput') ?? 'accountModal.nameInput'
+                  }
+                  defaultValue={account.accountName}
+                />
+                {errors.accountName && <p>{t('validation.required')}</p>}
               </div>
 
-              <div className="field">
+              <div>
                 <label className="label">{t('accountModal.loginInput')}</label>
-                <div className="control has-icons-left">
-                  <input
-                    {...register('login', { required: true })}
-                    className="input"
-                    type="text"
-                    name="login"
-                    placeholder={t('accountModal.loginInput') ?? ''}
-                    defaultValue={account.login}
-                  />
-                  <span className="icon is-small is-left">
-                    <i className="pi pi-user"></i>
-                  </span>
-                  {errors.login && <p>{t('validation.required')}</p>}
-                </div>
+                <br />
+                <InputText
+                  {...register('login', { required: true })}
+                  className="input"
+                  type="text"
+                  name="login"
+                  placeholder={t('accountModal.loginInput') ?? ''}
+                  defaultValue={account.login}
+                />
+                {errors.login && <p>{t('validation.required')}</p>}
               </div>
 
-              <div className="field">
+              <div>
                 <label className="label">{t('accountModal.passInput')}</label>
-                <div className="control has-icons-left">
-                  <input
-                    {...register('password', { required: true })}
-                    className="input"
-                    type={hidePass ? 'password' : 'text'}
-                    name="password"
-                    placeholder={
-                      t('accountModal.passInput') ?? 'accountModal.passInput'
-                    }
-                    defaultValue={account.password}
-                  />
-                  <span className="icon is-small is-left">
-                    <i className="pi pi-lock"></i>
-                  </span>
-                  {errors.password && <p>{t('validation.required')}</p>}
-                  <Button
-                    label="Mostrar/Esconder"
-                    onClick={toggleShow}
-                    type="button"
-                  />
-                </div>
+                <InputText
+                  {...register('password', { required: true })}
+                  className="input"
+                  type={hidePass ? 'password' : 'text'}
+                  name="password"
+                  placeholder={
+                    t('accountModal.passInput') ?? 'accountModal.passInput'
+                  }
+                  defaultValue={account.password}
+                />
+                {errors.password && <p>{t('validation.required')}</p>}
+                <Button
+                  label={
+                    t('accountModal.passButton') ?? 'accountModal.passButton'
+                  }
+                  onClick={toggleShow}
+                  type="button"
+                />
               </div>
 
-              <div className="field">
+              <div>
                 <label className="label">{t('accountModal.urlInput')}</label>
-                <div className="control">
-                  <input
-                    {...register('url', { required: false })}
-                    className="input"
-                    type="text"
-                    name="url"
-                    placeholder={
-                      t('accountModal.urlInput') ?? 'accountModal.urlInput'
-                    }
-                    defaultValue={account.url}
-                  />
-                </div>
+                <br />
+                <InputText
+                  {...register('url', { required: false })}
+                  className="input"
+                  type="text"
+                  name="url"
+                  placeholder={
+                    t('accountModal.urlInput') ?? 'accountModal.urlInput'
+                  }
+                  defaultValue={account.url}
+                />
               </div>
               {dialogOptions}
             </form>

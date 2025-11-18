@@ -1,5 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AccountLogin } from '@/api/model/AccountLogin';
+import type { ApiError } from '@/api/model/response/ApiError';
+import type {
+  AccountData,
+  AccountDeleteData,
+} from '@/api/model/request/AccountData';
 import {
   createAccount,
   deleteAccount,
@@ -9,55 +13,38 @@ import type { UseMutationResult } from '@tanstack/react-query';
 import { useMutation } from '@tanstack/react-query';
 
 const usePostAccount = (): UseMutationResult<
-  any,
-  any,
-  {
-    account: AccountLogin;
-  },
+  AccountLogin,
+  ApiError,
+  AccountData,
   unknown
-> => {
-  return useMutation(
-    ({ account }: { account: AccountLogin }) => createAccount(account),
-    {
-      onError: (err: any) => console.error('createAccount', err?.response),
-    }
-  );
-};
+> =>
+  useMutation({
+    mutationFn: ({ account }: AccountData) => createAccount(account),
+    onError: (err: ApiError) => console.error('usePostAccount', err?.response),
+  });
 
 const usePutAccount = (): UseMutationResult<
-  any,
-  any,
-  {
-    account: AccountLogin;
-  },
+  unknown,
+  ApiError,
+  AccountData,
   unknown
-> => {
-  return useMutation(
-    ({ account }: { account: AccountLogin }) => updateAccount(account),
-    {
-      onError: (err: any) => console.error('usePutAccount', err?.response),
-    }
-  );
-};
+> =>
+  useMutation({
+    mutationFn: ({ account }: AccountData) => updateAccount(account),
+    onError: (err: ApiError) => console.error('usePutAccount', err?.response),
+  });
 
 const useDeleteAccount = (): UseMutationResult<
-  any,
-  any,
-  {
-    login: string;
-    accountId: number;
-  },
+  void,
+  ApiError,
+  AccountDeleteData,
   unknown
-> => {
-  return useMutation(
-    ({ login, accountId }: { login: string; accountId: number }) =>
+> =>
+  useMutation({
+    mutationFn: ({ login, accountId }: AccountDeleteData) =>
       deleteAccount(login, accountId),
-    {
-      onError: (err: any) => {
-        console.error('useDeleteAccount', err?.response);
-      },
-    }
-  );
-};
+    onError: (err: ApiError) =>
+      console.error('useDeleteAccount', err?.response),
+  });
 
 export { usePostAccount, usePutAccount, useDeleteAccount };

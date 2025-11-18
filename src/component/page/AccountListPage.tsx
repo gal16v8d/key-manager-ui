@@ -15,6 +15,7 @@ import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import AccountModal from './AccountModal';
+import './AccountListPage.css';
 
 const AccountListPage = (): ReactElement => {
   const { t, message: messages } = useKmgrContext();
@@ -77,17 +78,6 @@ const AccountListPage = (): ReactElement => {
     );
   };
 
-  const tableHeader = (
-    <div className="p-clearfix" style={{ width: '100%' }}>
-      <Button
-        icon="pi pi-plus"
-        onClick={addNew}
-        style={{ float: 'left' }}
-        tooltip={t('accountList.add') ?? 'accountList.add'}
-      />
-    </div>
-  );
-
   if (!loggedUser) {
     return <Navigate to={ENV.ROUTES.INDEX} replace />;
   }
@@ -105,52 +95,54 @@ const AccountListPage = (): ReactElement => {
         <div className="container">
           <br />
           {<Messages ref={messages} />}
-          <div className="container is-fluid">
-            <br />
-            <div className="content-section implementation">
-              <DataTable
-                value={accounts}
-                paginator={true}
-                rows={10}
-                rowsPerPageOptions={[10, 20, 50]}
-                header={tableHeader}
-                loading={isLoading}
-              >
-                <Column field="id" header={t('accountList.table.id')} />
-                <Column
-                  field="accountName"
-                  header={t('accountList.table.name')}
-                  filter={true}
-                />
-                <Column
-                  field="account.login"
-                  header={t('accountList.table.user')}
-                  filter={true}
-                />
-                <Column
-                  field="login"
-                  header={t('accountList.table.userLogin')}
-                  filter={true}
-                />
-                <Column
-                  field="url"
-                  header={t('accountList.table.url')}
-                  filter={true}
-                />
-                <Column
-                  body={actionTemplate}
-                  style={{ textAlign: 'center', width: '8em' }}
-                  header={t('accountList.table.actions')}
-                />
-              </DataTable>
-            </div>
-            <AccountModal
-              accountOperation={accountOperation}
-              loggedUser={loggedUser}
-              refetch={refetch}
-              showMessage={showMessage}
+          <div className="button-container">
+            <Button
+              icon="pi pi-plus"
+              onClick={addNew}
+              style={{ float: 'left' }}
+              tooltip={t('accountList.add') ?? 'accountList.add'}
             />
           </div>
+          <DataTable
+            value={accounts}
+            paginator={true}
+            rows={10}
+            rowsPerPageOptions={[10, 20, 50]}
+            loading={isLoading}
+          >
+            <Column field="id" header={t('accountList.table.id')} />
+            <Column
+              field="accountName"
+              header={t('accountList.table.name')}
+              filter={true}
+            />
+            <Column
+              field="account.login"
+              header={t('accountList.table.user')}
+              filter={true}
+            />
+            <Column
+              field="login"
+              header={t('accountList.table.userLogin')}
+              filter={true}
+            />
+            <Column
+              field="url"
+              header={t('accountList.table.url')}
+              filter={true}
+            />
+            <Column
+              body={actionTemplate}
+              style={{ textAlign: 'center', width: '8em' }}
+              header={t('accountList.table.actions')}
+            />
+          </DataTable>
+          <AccountModal
+            accountOperation={accountOperation}
+            loggedUser={loggedUser}
+            refetch={refetch}
+            showMessage={showMessage}
+          />
         </div>
       )}
     </>

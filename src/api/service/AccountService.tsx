@@ -2,7 +2,7 @@ import { AccountLogin } from '@/api/model/AccountLogin';
 import ENV from '@/constants/KeyManagerConstants';
 import axios from 'axios';
 
-const getAllByLogin = async (login: string): Promise<AccountLogin[]> => {
+const getAllByLogin = async (login: string): Promise<Array<AccountLogin>> => {
   console.log(`Calling: ${ENV.API.ACCOUNTS_URL}/${login}`);
   const response = await axios.get(`${ENV.API.ACCOUNTS_URL}/${login}`);
   return response?.data;

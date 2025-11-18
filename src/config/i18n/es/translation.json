@@ -1,4 +1,7 @@
 {
+  "app": {
+    "name": "KeyManager"
+  },
   "header": {
     "accounts": "Cuentas",
     "logout": "Salir",
@@ -33,6 +36,7 @@
     "updatedErrorMsg": "No se pudo actualizar la cuenta: ",
     "saveButton": "Guardar",
     "cancelButton": "Cancelar",
+    "passButton": "Mostrar/Ocultar",
     "dialogHeader": "Detalles de la cuenta",
     "nameInput": "Nombre cuenta",
     "loginInput": "Usuario",

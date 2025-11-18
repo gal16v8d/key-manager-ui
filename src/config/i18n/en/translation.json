@@ -1,4 +1,7 @@
 {
+  "app": {
+    "name": "KeyManager"
+  },
   "header": {
     "accounts": "Accounts",
     "logout": "Logout",
@@ -33,6 +36,7 @@
     "updatedErrorMsg": "Couldn't update the account: ",
     "saveButton": "Save",
     "cancelButton": "Cancel",
+    "passButton": "Show/Hide",
     "dialogHeader": "Account details",
     "nameInput": "Account name",
     "loginInput": "Login",

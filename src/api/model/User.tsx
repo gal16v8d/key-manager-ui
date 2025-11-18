@@ -5,7 +5,7 @@ export class User extends Login {
   lastName?: string;
   passwordAgain?: string;
 
-  constructor(res?: any) {
+  constructor(res?: User) {
     super(res);
     Object.assign(this, res);
   }

@@ -1,0 +1,14 @@
+.modal-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-form {
+    display: grid;
+    gap: 20px;
+}
+
+.modal-form span {
+    padding-right:20px;
+}

@@ -1,0 +1,11 @@
+.header {
+    display: block;
+    text-align: center !important;
+    padding: 1.5rem;
+}
+  
+.title {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.125;
+}
