@@ -7,6 +7,8 @@
     "node": ">=24.0.0 < 25.0.0"
   },
   "scripts": {
+    "preinstall": "npm config set ignore-scripts true",
+    "postinstall": "npm config set ignore-scripts false",
     "dev": "vite",
     "dev:docker": "vite --host",
     "build": "tsc && vite build",
@@ -19,7 +21,7 @@
   "dependencies": {
     "@tanstack/react-query": "^5.90.8",
     "@tanstack/react-query-devtools": "^5.90.2",
-    "axios": "^1.13.2",
+    "axios": "^1.17.0",
     "i18next-browser-languagedetector": "^8.2.0",
     "path": "^0.12.7",
     "primeicons": "^7.0.0",
@@ -38,7 +40,7 @@
     "@types/node": "^24.10.1",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "@vitejs/plugin-react": "^5.1.1",
+    "@vitejs/plugin-react": "^6.0.2",
     "@vitest/coverage-v8": "^4.0.8",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^5.2.0",
@@ -50,7 +52,7 @@
     "prettier": "^3.6.2",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.4",
-    "vite": "^7.2.2",
+    "vite": "^8.0.16",
     "vitest": "^4.0.8"
   },
   "lint-staged": {
